@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { LocationContext } from "../contexts/LocationContext";
 
-export const Search = () => {
+export const Search = ({ isDay }) => {
   const [search, setSearch] = useState("");
   const { value, setContextValue } = useContext(LocationContext);
 
@@ -15,10 +15,30 @@ export const Search = () => {
     console.log(value);
   };
 
+  let textColor = isDay == 1 ? "text-[#202225]" : "text-slate-300";
+  let borderColor = isDay == 1 ? "border-[#202225]" : "border-slate-300";
+  let placeHolder =
+    isDay == 1 ? "placeholder-[#202225]" : "placeholder-slate-300";
+  const searchAttr = [
+    "bg-black",
+    "bg-opacity-20",
+    "shadow-xl",
+    "rounded-xl",
+    "p-3",
+    textColor,
+  ];
+  const inputAttr = [
+    "bg-transparent",
+    "mr-2",
+    "focus:outline-none",
+    "border-b-2",
+    placeHolder,
+    borderColor,
+  ];
   return (
-    <div className="bg-black bg-opacity-20 shadow-xl rounded-xl p-3 text-dark_primary dark:text-light_tertiary">
+    <div className={searchAttr.join(" ")}>
       <input
-        className="mr-2 bg-transparent focus:outline-none border-b-2 border-dark_primary dark:border-light_tertiary"
+        className={inputAttr.join(" ")}
         type="text"
         value={search}
         onChange={handleChange}
@@ -26,19 +46,18 @@ export const Search = () => {
       ></input>
       <button onClick={handleClick}>
         <svg
-          class="h-5 w-5 text-light-tertiary items-center mt-2"
+          className="h-5 w-5 text-light-tertiary items-center mt-2"
           width="16"
           height="16"
           viewBox="0 0 24 24"
-          stroke-width="2"
+          strokeWidth="2"
           stroke="currentColor"
           fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          {" "}
-          <path stroke="none" d="M0 0h24v24H0z" />{" "}
-          <circle cx="10" cy="10" r="7" />{" "}
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <circle cx="10" cy="10" r="7" />
           <line x1="21" y1="21" x2="15" y2="15" />
         </svg>
       </button>

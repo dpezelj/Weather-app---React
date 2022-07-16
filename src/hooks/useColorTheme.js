@@ -8,7 +8,7 @@ export const useColorTheme = () => {
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);
     root.classList.add(theme);
-    console.log(localStorage.theme);
+    //console.log(localStorage.theme);
     localStorage.setItem("theme", theme);
   }, [theme, colorTheme]);
 

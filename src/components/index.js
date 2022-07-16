@@ -4,3 +4,6 @@ export { Error } from "./Error";
 export { FooterBar } from "./FooterBar";
 export { TopBar } from "./TopBar";
 export { Card } from "./Card";
+export { CardBasicItem } from "./CardBasicItem";
+export { Header } from "./Header";
+export { WindInfo } from "./WindInfo";

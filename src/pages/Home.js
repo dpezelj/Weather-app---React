@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { LocationContext } from "../contexts/LocationContext";
-import { Card } from "../components";
-import { Header } from "../components/Header";
-
+import { Header, Card, WindInfo } from "../components";
 import { api } from "../api";
+import { Alerts } from "../components/Alerts";
 
 const Home = () => {
   const [weather, setWeather] = useState();
   const { value, setContextValue } = useContext(LocationContext);
 
   useEffect(() => {
-    console.log("testeetsetd");
     const callMe = async () => {
       const geolocationAPI = navigator.geolocation;
 
@@ -24,28 +22,23 @@ const Home = () => {
         geolocationAPI.getCurrentPosition(async ({ coords }) => {
           const { longitude, latitude } = coords;
 
-          const weatherData = await api.getWeatherByCoords({
-            latitude,
-            longitude,
-          });
+          const weatherData = await api.getWeatherByCoords(latitude, longitude);
 
-          const { error = null, location, current } = weatherData;
+          const { error = null, location, current, alerts } = weatherData;
 
           if (!error) {
-            setWeather({ location, current });
+            setWeather({ location, current, alerts });
             return;
           }
           setContextValue({ error });
         });
       } else {
-        const weatherData = await api.getWeatherByName({
-          name: value.searchValue,
-        });
+        const weatherData = await api.getWeatherByName(value.searchValue);
 
-        const { error = null, location, current } = weatherData;
+        const { error = null, location, current, alerts } = weatherData;
 
         if (!error) {
-          setWeather({ location, current });
+          setWeather({ location, current, alerts });
           return;
         }
         setContextValue({ error });
@@ -61,6 +54,10 @@ const Home = () => {
     location: { name, region, country, tz_id: timezone },
   } = weather;
 
+  const {
+    current: { wind_kph, wind_dir, gust_kph, wind_degree },
+  } = weather;
+
   return (
     <div>
       <Header
@@ -68,10 +65,19 @@ const Home = () => {
         region={region}
         country={country}
         timezone={timezone}
+        isDay={weather.current.is_day}
       />
-      <div className="items-center justify-center flex">
-        <Card value={weather} />
-      </div>
+
+      <Card value={weather} />
+
+      <WindInfo
+        windSpeed={wind_kph}
+        windDegree={wind_degree}
+        windDir={wind_dir}
+        windGust={gust_kph}
+      />
+
+      <Alerts alertData={weather.alerts} />
     </div>
   );
 };

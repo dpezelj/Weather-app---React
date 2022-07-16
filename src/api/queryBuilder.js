@@ -20,13 +20,10 @@ const mapParamsToQueryParams = (params) =>
 // api.getWeatherByCoords(lat, long)
 
 export const api = {
-  getWeatherByName: async ({
-    name: q,
-    days = "1",
-    aqi = "yes",
-    alerts = "yes",
-    ...rest
-  }) => {
+  getWeatherByName: async (
+    q,
+    { days = "1", aqi = "yes", alerts = "yes", ...rest } = {}
+  ) => {
     const fullUrl = `${BASE_API_URI}${mapParamsToQueryParams({
       q,
       days,
@@ -34,20 +31,15 @@ export const api = {
       alerts,
       ...rest,
     })}`;
-    console.log(fullUrl);
     return fetch(fullUrl).then((res) => res.json());
   },
 
-  getWeatherByCoords: async ({
+  getWeatherByCoords: async (
     latitude,
     longitude,
-    days = "1",
-    aqi = "yes",
-    alerts = "yes",
-    ...rest
-  }) => {
+    { days = "1", aqi = "yes", alerts = "yes", ...rest } = {}
+  ) => {
     const q = `${latitude},${longitude}`;
-
     const fullUrl = `${BASE_API_URI}${mapParamsToQueryParams({
       q,
       days,
@@ -55,7 +47,6 @@ export const api = {
       alerts,
       ...rest,
     })}`;
-    console.log(fullUrl);
     return fetch(fullUrl).then((res) => res.json());
   },
 };
