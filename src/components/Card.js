@@ -1,7 +1,6 @@
 import { CardBasicItem } from "./CardBasicItem";
 
 export const Card = (props) => {
-  const location = props?.value?.location;
   const current = props?.value?.current;
   return (
     <div className="items-center justify-center flex">
@@ -11,7 +10,7 @@ export const Card = (props) => {
             CURRENT WEATHER
           </div>
           <div className="flex justify-around border-b-2 border-dark_primary">
-            <img className="my-2" src={current?.condition?.icon}></img>
+            <img className="my-2" src={current?.condition?.icon} alt=""></img>
             <pre className="text-3xl font-extrabold pt-5">
               {Math.round(current?.temp_c)} °C
             </pre>

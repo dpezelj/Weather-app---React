@@ -4,8 +4,8 @@ import nightBg from "../assets/bg/night.mov";
 
 export const Header = ({ name, region, country, timezone, isDay }) => {
   console.log("is day: " + isDay);
-  let bg = isDay == 1 ? dayBg : nightBg;
-  let textColor = isDay == 1 ? "text-[#202225]" : "text-slate-300";
+  let bg = isDay === 1 ? dayBg : nightBg;
+  let textColor = isDay === 1 ? "text-[#202225]" : "text-slate-300";
 
   const headerAttr = [
     "bg-black",
