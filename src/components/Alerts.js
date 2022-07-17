@@ -2,7 +2,7 @@ import { AlertItem } from "./AlertItem";
 
 export const Alerts = (props) => {
   console.log(props.alertData.alert.length);
-  if (props.alertData.alert.length == 0) {
+  if (props.alertData.alert.length === 0) {
     return;
   }
   return (
