@@ -7,3 +7,5 @@ export { Card } from "./Card";
 export { CardBasicItem } from "./CardBasicItem";
 export { Header } from "./Header";
 export { WindInfo } from "./WindInfo";
+export { Alerts } from "./Alerts";
+export { AlertItem } from "./AlertItem";

@@ -46,7 +46,7 @@ const Home = () => {
     };
 
     callMe();
-  }, [value.searchValue]);
+  }, [value.searchValue, setContextValue]);
 
   if (!weather) return null;
 
