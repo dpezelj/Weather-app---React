@@ -15,10 +15,10 @@ export const Search = ({ isDay }) => {
     console.log(value);
   };
 
-  let textColor = isDay == 1 ? "text-[#202225]" : "text-slate-300";
-  let borderColor = isDay == 1 ? "border-[#202225]" : "border-slate-300";
+  let textColor = isDay === 1 ? "text-[#202225]" : "text-slate-300";
+  let borderColor = isDay === 1 ? "border-[#202225]" : "border-slate-300";
   let placeHolder =
-    isDay == 1 ? "placeholder-[#202225]" : "placeholder-slate-300";
+    isDay === 1 ? "placeholder-[#202225]" : "placeholder-slate-300";
   const searchAttr = [
     "bg-black",
     "bg-opacity-20",

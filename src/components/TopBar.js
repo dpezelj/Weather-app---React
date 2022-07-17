@@ -6,7 +6,7 @@ const TopBar = () => {
 
   return (
     <div className="flex w-full bg-light_primary dark:bg-dark_primary text-dark_primary dark:text-light_primary transition duration-2 justify-between flex-row items-center p-3 fixed h-16 z-50">
-      <img className="w-11 items-center" src={logoImage}></img>
+      <img className="w-11 items-center" src={logoImage} alt=""></img>
 
       <ul className="flex flex-row ">
         {menuItems.map((el) => (
