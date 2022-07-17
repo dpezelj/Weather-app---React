@@ -1,5 +1,5 @@
 const apiKey = "8ef102dbbdfd46d1abb203040211309";
-const BASE_API_URI = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}`;
+const BASE_API_URI = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}`;
 
 const mapParamsToQueryParams = (params) =>
   Object.entries(params).reduce(
