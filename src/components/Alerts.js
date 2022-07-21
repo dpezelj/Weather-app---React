@@ -17,7 +17,7 @@ export const Alerts = (props) => {
               <AlertItem
                 expires={el.expires}
                 headline={el.headline}
-                category={el.category}
+                event={el.event}
                 desc={el.desc}
               />
             );
