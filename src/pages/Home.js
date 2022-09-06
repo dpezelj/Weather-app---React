@@ -4,50 +4,11 @@ import { LocationContext } from "../contexts/LocationContext";
 import { Header, Card, WindInfo } from "../components";
 import { api } from "../api";
 import { Alerts } from "../components/Alerts";
+import { useGetData } from "../hooks/useGetData";
 
 const Home = () => {
-  const [weather, setWeather] = useState();
-  const { value, setContextValue } = useContext(LocationContext);
-
-  useEffect(() => {
-    const callMe = async () => {
-      const geolocationAPI = navigator.geolocation;
-
-      if (!geolocationAPI) {
-        console.log("Geolocation not working!");
-        return;
-      }
-
-      if (!value.searchValue) {
-        geolocationAPI.getCurrentPosition(async ({ coords }) => {
-          const { longitude, latitude } = coords;
-
-          const weatherData = await api.getWeatherByCoords(latitude, longitude);
-
-          const { error = null, location, current, alerts } = weatherData;
-
-          if (!error) {
-            setWeather({ location, current, alerts });
-            return;
-          }
-          setContextValue({ error });
-        });
-      } else {
-        const weatherData = await api.getWeatherByName(value.searchValue);
-
-        const { error = null, location, current, alerts } = weatherData;
-
-        if (!error) {
-          setWeather({ location, current, alerts });
-          return;
-        }
-        setContextValue({ error });
-      }
-    };
-
-    callMe();
-  }, [value.searchValue, setContextValue]);
-
+  const {weather} = useGetData()
+  
   if (!weather) return null;
 
   const {
@@ -61,6 +22,7 @@ const Home = () => {
   return (
     <div>
       <Header
+      location={"home"}
         name={name}
         region={region}
         country={country}

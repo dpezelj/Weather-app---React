@@ -7,18 +7,6 @@ const mapParamsToQueryParams = (params) =>
     ""
   );
 
-/* const banana = [1, 2, 3, 4, 5];
-
-  const sum = banana.reduce((acc, curr) => acc + curr, 0);
-
-  console.log(sum); */
-
-// api.getWeatherByName(name, {  days = "2",
-// aqi = "yes",
-//alerts = "no"})
-
-// api.getWeatherByCoords(lat, long)
-
 export const api = {
   getWeatherByName: async (
     q,
