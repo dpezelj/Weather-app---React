@@ -1,10 +1,16 @@
 import { Search } from "./Search";
 import dayBg from "../assets/bg/day.mov";
 import nightBg from "../assets/bg/night.mov";
+import astronomyBg from "../assets/bg/nightsky.mov"
+import { MoonPhase } from "./MoonPhase";
 
-export const Header = ({ name, region, country, timezone, isDay }) => {
+export const Header = ({ name, region, country, timezone, isDay, location, moonPhase }) => {
   console.log("is day: " + isDay);
+
+  
   let bg = isDay === 1 ? dayBg : nightBg;
+  let background = location === 'home' ? bg : bg;
+  background = location === 'astronomy' ? astronomyBg : bg
   let textColor = isDay === 1 ? "text-[#202225]" : "text-slate-300";
 
   const headerAttr = [
@@ -19,7 +25,7 @@ export const Header = ({ name, region, country, timezone, isDay }) => {
   return (
     <div className="flex w-full  h-60  justify-around ">
       <video
-        src={bg}
+        src={background}
         autoPlay
         loop
         muted
@@ -32,7 +38,10 @@ export const Header = ({ name, region, country, timezone, isDay }) => {
           <div>{country}</div>
           <div>{timezone}</div>
         </div>
-        <Search isDay={isDay} />
+        {location === 'home' ? (
+          <Search isDay={isDay} />
+        ) : (<MoonPhase phase={moonPhase}/>)}
+        
       </div>
     </div>
   );
